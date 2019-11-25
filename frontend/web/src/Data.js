@@ -16,10 +16,13 @@ async function run() {
         });
 
         const result = await connection.execute(
-            'SELECT singer.artist_id FROM singer ORDER BY RAND() LIMIT 100;'
-    );
-
-        console.log(result.rows);
+            `SELECT DISTINCT genre.genre_name FROM genre`
+        );
+        output = []
+        result.rows.forEach(x =>{
+            output.push(x.GENRE_NAME)
+        })
+        console.log(output);
 
     } catch (err) {
         console.error(err);
@@ -33,6 +36,5 @@ async function run() {
         }
     }
 }
-
 run();
 
