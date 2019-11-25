@@ -1,0 +1,4 @@
+node_modules/
+jspm_packages/
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
