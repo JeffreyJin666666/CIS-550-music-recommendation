@@ -34,24 +34,10 @@ export default class SearchPage extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            cards : [
-                {
-                    Name : "Song A",
-                    song_rating: 3
-                },
-                {
-                    Name : "Song B",
-                    song_rating: 2
-                },
-                {
-                    Name : "Song C",
-                    song_rating: 5
-                },
-                {
-                    Name : "Song D",
-                    song_rating: 4
-                }
-            ]
+           from_year : 1900,
+            to_year : 2000,
+            song_rating : 5,
+
         };
     }
 
@@ -59,58 +45,37 @@ export default class SearchPage extends React.Component{
 
     }
 
+
+    handleChange(){
+
+    }
+
     render(){
-        const classes = makeStyles(theme => ({
-            icon: {
-                marginRight: theme.spacing(2),
-            },
-            heroContent: {
-                backgroundColor: theme.palette.background.paper,
-                padding: theme.spacing(8, 0, 6),
-            },
-            heroButtons: {
-                marginTop: theme.spacing(4),
-            },
-            cardGrid: {
-                paddingTop: theme.spacing(8),
-                paddingBottom: theme.spacing(8),
-            },
-            card: {
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-            },
-            cardMedia: {
-                paddingTop: '56.25%', // 16:9
-            },
-            cardContent: {
-                flexGrow: 1,
-            },
-            footer: {
-                backgroundColor: theme.palette.background.paper,
-                padding: theme.spacing(6),
-            },
-        }));
+
         return (
             <React.Fragment>
                 <CssBaseline />
                 <main>
                     {/* Hero unit */}
-                    <Row>
-                        <Col span={6}>
-                            <Search
-                                placeholder="input search text"
-                                onSearch={value => console.log(value)}
-                                style={{ width: 200 }}
-                            />
-                        </Col>
+                    <Row className={' search_row search_box'} >
+                        <Search
+                            placeholder="input search text"
+                            onSearch={value => console.log(value)}
+                            style={{ width: '100%' }}
+                        />
+                    </Row>
+                    <Row className={'search_row '}>
+
                         <Col span={6}>
                             <GeneralSelectComponent/>
                         </Col>
                         <Col span={6}>
                             <SongRatingComponent/>
                         </Col>
-                        <Col span={6}>From: <YearComponent/> To: <YearComponent/></Col>
+                        <Col span={2}>From: </Col>
+                        <Col span={4}><YearComponent/></Col>
+                        <Col span={2}>To: </Col>
+                        <Col span={4}><YearComponent/></Col>
                     </Row>
 
                     <Row>
@@ -129,17 +94,7 @@ export default class SearchPage extends React.Component{
                     </Row>
 
                 </main>
-                {/* Footer */}
-                <footer className={classes.footer}>
-                    <Typography variant="h6" align="center" gutterBottom>
-                        Thanks for visiting. Enjoy!
-                    </Typography>
-                    <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                        Please give us credit for doing everything!
-                    </Typography>
-                    <Copyright />
-                </footer>
-                {/* End footer */}
+
             </React.Fragment>
         );
     }

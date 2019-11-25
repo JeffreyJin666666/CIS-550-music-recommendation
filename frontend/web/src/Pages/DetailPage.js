@@ -25,6 +25,8 @@ function Copyright() {
 
 export default class DetailPage extends React.Component{
 
+
+
     constructor(props) {
         super(props);
         this.state = {
