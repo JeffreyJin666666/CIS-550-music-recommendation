@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-
+import {getRandomSongs} from '../Services/DoYouKnowService'
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -49,21 +49,16 @@ export default class MainPage extends React.Component{
         };
     }
 
-    componentDidMount() {
-        this.getGenres()
+    handleChange=(key, value)=>{
+        this.setState({
+            [key] : value
+        },()=>{
+            console.log("main page changed", this.state)
+        })
     }
 
-    getGenres(){
-
-        fetch('http://localhost:3001/songs')
-            .then(response => response.json())
-            .then(data =>
-                this.setState({
-                    songs : data
-                })
-            );
-
-
+    componentDidMount() {
+        getRandomSongs(this.handleChange, 'songs')
     }
 
     render(){
@@ -101,14 +96,7 @@ export default class MainPage extends React.Component{
         return (
             <React.Fragment>
                 <CssBaseline />
-                {/*<AppBar position="relative">*/}
-                {/*    <Toolbar>*/}
-                {/*        <CameraIcon className={classes.icon} />*/}
-                {/*        <Typography variant="h6" color="inherit" noWrap>*/}
-                {/*            Album layout*/}
-                {/*        </Typography>*/}
-                {/*    </Toolbar>*/}
-                {/*</AppBar>*/}
+
                 <main>
                     {/* Hero unit */}
                     <div className={classes.heroContent}>

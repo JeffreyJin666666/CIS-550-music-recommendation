@@ -84,11 +84,8 @@ raw.forEach(x=>{
     genre.push(<Option key={x}>{x}</Option>);
 })
 
-function handleChange(value) {
-    console.log(`selected ${value}`);
-}
-
 export default class GeneralSelectComponent extends React.Component{
+
 
     componentDidMount() {
 
@@ -100,8 +97,8 @@ export default class GeneralSelectComponent extends React.Component{
                 mode="multiple"
                 style={{ width: '100%' }}
                 placeholder="Please select"
-                defaultValue={['charity', 'fixme']}
-                onChange={handleChange}
+                onChange={(v)=>this.props.onChange(this.props.choose_key, v)}
+                defaultValue={this.props.value}
             >
                 {genre}
             </Select>

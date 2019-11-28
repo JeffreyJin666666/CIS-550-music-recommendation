@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import MainPage from "./Pages/MainPage";
 import SearchPage from "./Pages/SearchPage";
+import LoginPage from "./Pages/LoginPage"
 import { Menu, Icon } from 'antd';
 
 
@@ -27,6 +28,11 @@ export default class App extends React.Component {
                             <Menu.Item key="app" >
                                 <Link to="/search"><Icon type="build" />Search</Link>
                             </Menu.Item>
+                            <Menu.Item key="user" >
+                                <Link to="/login"><Icon type="build" />Login</Link>
+                            </Menu.Item>
+
+
                         </Menu>
 
                     </nav>
@@ -34,13 +40,16 @@ export default class App extends React.Component {
                     {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
                     <Switch>
-
+                        <Route path="/login">
+                            <LoginPage />
+                        </Route>
                         <Route path="/search">
                             <SearchPage />
                         </Route>
                         <Route path="/">
                             <MainPage />
                         </Route>
+
                     </Switch>
                 </div>
             </Router>
