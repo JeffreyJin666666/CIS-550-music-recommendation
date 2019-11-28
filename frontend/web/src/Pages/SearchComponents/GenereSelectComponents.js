@@ -90,6 +90,10 @@ function handleChange(value) {
 
 export default class GeneralSelectComponent extends React.Component{
 
+    componentDidMount() {
+
+    }
+
     render() {
         return(
             <Select

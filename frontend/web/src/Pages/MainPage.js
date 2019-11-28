@@ -1,7 +1,6 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -45,11 +44,25 @@ export default class MainPage extends React.Component{
                     Name : "Song D",
                     song_rating: 4
                 }
-            ]
+            ],
+            songs : []
         };
     }
 
     componentDidMount() {
+        this.getGenres()
+    }
+
+    getGenres(){
+
+        fetch('http://localhost:3001/songs')
+            .then(response => response.json())
+            .then(data =>
+                this.setState({
+                    songs : data
+                })
+            );
+
 
     }
 
@@ -112,20 +125,15 @@ export default class MainPage extends React.Component{
                     <Container className={classes.cardGrid} maxWidth="md">
                         {/* End hero unit */}
                         <Grid container spacing={4}>
-                            {this.state.cards.map(card => (
-                                <Grid item key={card} xs={12} sm={6} md={4}>
-                                    <Card className={classes.card}>
-                                        <CardMedia
-                                            className={classes.cardMedia}
-                                            image="https://source.unsplash.com/random"
-                                            title="Image title"
-                                        />
+                            {this.state.songs.map(song => (
+                                <Grid item key={song.NAME} xs={12} sm={6} md={4}>
+                                    <Card className={classes.card} >
                                         <CardContent className={classes.cardContent}>
                                             <Typography gutterBottom variant="h5" component="h2">
-                                                {card.Name}
+                                                {song.NAME}
                                             </Typography>
                                             <Typography>
-                                                Song's Rating : {card.song_rating}
+                                                Song's Rating : {song.RATING}
                                             </Typography>
                                         </CardContent>
                                     </Card>
