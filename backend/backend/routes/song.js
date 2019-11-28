@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('../database');
 /* GET users listing. */
 router.get('/', function(req, res) {
-  db.getGenres(
+  db.getRandomSongs(
 
     (err, result)=>{
       if(err){
@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
         return
       }else{
         console.log(result);
-        res.send(result);
+        res.send(result.rows);
       }
     }
   )

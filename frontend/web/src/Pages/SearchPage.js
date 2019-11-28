@@ -1,33 +1,11 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import {Col, Input, Row} from 'antd';
+import {Col, Input, Row, Button} from 'antd';
 import GeneralSelectComponent from "./SearchComponents/GenereSelectComponents";
 import SongRatingComponent from "./SearchComponents/SongRatingComponent";
 import YearComponent from "./SearchComponents/YearComponent";
 
 const { Search } = Input;
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
 
 export default class SearchPage extends React.Component{
 
@@ -37,18 +15,27 @@ export default class SearchPage extends React.Component{
            from_year : 1900,
             to_year : 2000,
             song_rating : 5,
+            genres : []
 
         };
     }
 
     componentDidMount() {
-
+        console.log("search page loading")
     }
 
+    handleQuickEntry=(entry)=>{
 
-    handleChange(){
+    };
 
-    }
+
+    handleChange=(key, value)=>{
+        this.setState({
+            [key] : value
+        },()=>{
+            console.log("value changed, and the current state is", this.state)
+        })
+    };
 
     render(){
 
@@ -67,30 +54,46 @@ export default class SearchPage extends React.Component{
                     <Row className={'search_row '}>
 
                         <Col span={6}>
-                            <GeneralSelectComponent/>
+                            <GeneralSelectComponent value={this.state.genres} choose_key={'genres'} onChange={this.handleChange} />
                         </Col>
                         <Col span={6}>
-                            <SongRatingComponent/>
+                            <SongRatingComponent value={this.state.song_rating} choose_key={'song_rating'} onChange={this.handleChange}/>
                         </Col>
                         <Col span={2}>From: </Col>
-                        <Col span={4}><YearComponent/></Col>
+                        <Col span={4}><YearComponent  value={this.state.from_year} choose_key={'from_year'} onChange={this.handleChange}/></Col>
                         <Col span={2}>To: </Col>
-                        <Col span={4}><YearComponent/></Col>
+                        <Col span={4}><YearComponent  value={this.state.to_year} choose_key={'to_year'} onChange={this.handleChange}/></Col>
+                    </Row>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Row>
+                        <Row>Do You Know? </Row>
+                        <Row>
+                            <Button icon="search" onClick={()=>this.handleQuickEntry(1)}>
+                                Quick Entry 1
+                            </Button>
+
+                        </Row>
+                        <Row>
+                            <Button icon="search" onClick={()=>this.handleQuickEntry(2)}>
+                                Quick Entry 2
+                            </Button>
+                        </Row>
+                        <Row>
+                            <Button icon="search" onClick={()=>this.handleQuickEntry(3)}>
+                                Quick Entry 3
+                            </Button>
+                        </Row>
+                        <Row>
+                            <Button icon="search" onClick={()=>this.handleQuickEntry(4)}>
+                                Quick Entry 4
+                            </Button>
+                        </Row>
                     </Row>
 
                     <Row>
-                        <Row>
-                            Quick Entry 1
-                        </Row>
-                        <Row>
-                            Quick Entry 2
-                        </Row>
-                        <Row>
-                            Quick Entry 3
-                        </Row>
-                        <Row>
-                            Quick Entry 4
-                        </Row>
+                        Display Area
                     </Row>
 
                 </main>
