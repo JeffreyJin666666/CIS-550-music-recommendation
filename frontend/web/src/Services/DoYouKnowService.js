@@ -10,5 +10,18 @@ export function getRandomSongs(onChange, key){
 }
 
 export function searchQuery(onChange, key, request){
+    fetch('http://localhost:3001/search?from_year=' + request.from_year + '&to_year=' + request.to_year +  '&search_key='  +  request.search_key + '&search_type=' +  request.search_type + '&genre=' +  request.genres + '&song_rating=' + request.song_rating)
+        .then(response => response.json())
+        .then(data =>
+            onChange(key, data)
+        );
+}
 
+export function quickEntry(onChange, key, request){
+
+    fetch('http://localhost:3001/quick?index='+request)
+        .then(response => response.json())
+        .then(data =>
+            onChange(key, data)
+        );
 }

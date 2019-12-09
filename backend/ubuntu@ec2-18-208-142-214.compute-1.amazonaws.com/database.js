@@ -173,7 +173,7 @@ function handleGenerateSearchQuery(params){
     if(params.search_type === 'song'){
         query = `SELECT song.artist_name, song.duration, song.name, song.rating, song.year, singer.country, singer.sexuality, genre.genre_name FROM song JOIN singer ON song.artist = singer.artist_id JOIN genre ON genre.genre_id = song.genre WHERE song.year >= ` + parseInt(params.from_year) + ` AND song.year <= ` + parseInt(params.to_year)   + `AND song.rating = ` + params.song_rating
         if(params.search_key !== ""){
-            query +=  ` AND song.name LIKE '%` + params.search_key + `%'`
+            query +=  ` AND song.name = '` + params.search_key + `'`
         }
 
         if(params.genre !== ""){
@@ -183,7 +183,7 @@ function handleGenerateSearchQuery(params){
     }else{
         query =`SELECT song.artist_name, song.duration, song.name, song.rating, song.year, singer.country, singer.sexuality, genre.genre_name FROM song JOIN singer ON song.artist = singer.artist_id JOIN genre ON genre.genre_id = song.genre WHERE song.year >= ` + parseInt(params.from_year) + ` AND song.year <= ` + parseInt(params.to_year)   + `AND song.rating = ` + params.song_rating
         if(params.search_key !== ""){
-            query += ` AND song.artist_name LIKE '%` + params.search_key + `%'`
+            query += ` AND song.artist_name = '` + params.search_key + `'`
         }
         if(params.genre !== ""){
             query +=  ` AND genre.genre_name = '` + params.genre + `'`

@@ -4,11 +4,12 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+
 } from "react-router-dom";
 import MainPage from "./Pages/MainPage";
 import SearchPage from "./Pages/SearchPage";
-import LoginPage from "./Pages/LoginPage"
+import DoYouKnowPage from "./Pages/DoYouKnowPage";
 import { Menu, Icon } from 'antd';
 
 
@@ -29,7 +30,7 @@ export default class App extends React.Component {
                                 <Link to="/search"><Icon type="build" />Search</Link>
                             </Menu.Item>
                             <Menu.Item key="user" >
-                                <Link to="/login"><Icon type="build" />Login</Link>
+                                <Link to="/doyouknow"><Icon type="bulb" />Knowledge</Link>
                             </Menu.Item>
 
 
@@ -40,8 +41,8 @@ export default class App extends React.Component {
                     {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
                     <Switch>
-                        <Route path="/login">
-                            <LoginPage />
+                        <Route path="/doyouknow">
+                            <DoYouKnowPage />
                         </Route>
                         <Route path="/search">
                             <SearchPage />

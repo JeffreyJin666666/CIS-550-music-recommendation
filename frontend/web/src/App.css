@@ -22,3 +22,37 @@
 .App-link {
   color: #09d3ac;
 }
+
+.search_query_row{
+  align-items: center;
+  justify-content: flex-start;
+  display:flex;
+  margin:5px;
+}
+
+.year_component{
+  width: 100%;
+  padding-right: 10px;
+}
+
+.ant-select{
+  width: 100%;
+}
+
+.search_row{
+  margin: 10px;
+}
+
+.search_type_box {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 32px;
+}
+
+.search_button_box{
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  height: 32px;
+}
