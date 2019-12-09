@@ -28,6 +28,7 @@
   justify-content: flex-start;
   display:flex;
   margin:5px;
+  text-align: start;
 }
 
 .year_component{
@@ -55,4 +56,13 @@
   justify-content: flex-end;
   display: flex;
   height: 32px;
+}
+
+.focus_song{
+  background: #ECECEC;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 20px;
 }

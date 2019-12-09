@@ -6,7 +6,7 @@ export default class SongRatingComponent extends React.Component{
 
     render() {
         return(
-            <Rate allowHalf defaultValue={this.props.value} onChange={(v)=>this.props.onChange(this.props.choose_key, v)}/>
+            <Rate  value={this.props.value} onChange={(v)=>this.props.onChange(this.props.choose_key, v)}/>
         )
     }
 }

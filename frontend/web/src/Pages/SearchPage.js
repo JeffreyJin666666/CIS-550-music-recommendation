@@ -22,7 +22,7 @@ const columns = [
         title: 'Rating',
         dataIndex: 'RATING',
         key: 'RATING',
-        render: text => <Rate defaultValue={text}/>,
+        render: text => <Rate disabled value={text}/>,
     },
     {
         title: 'Genre',
