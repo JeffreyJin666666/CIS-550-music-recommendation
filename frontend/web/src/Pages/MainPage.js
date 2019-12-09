@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import {getRandomSongs} from '../Services/DoYouKnowService'
+import { Card as AntdCard, Rate} from 'antd';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -27,24 +28,7 @@ export default class MainPage extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            cards : [
-                {
-                    Name : "Song A",
-                    song_rating: 3
-                },
-                {
-                    Name : "Song B",
-                    song_rating: 2
-                },
-                {
-                    Name : "Song C",
-                    song_rating: 5
-                },
-                {
-                    Name : "Song D",
-                    song_rating: 4
-                }
-            ],
+            focus_index : 0,
             songs : []
         };
     }
@@ -59,6 +43,12 @@ export default class MainPage extends React.Component{
 
     componentDidMount() {
         getRandomSongs(this.handleChange, 'songs')
+    }
+
+    handleOnHover=(index)=>{
+        this.setState({
+            focus_index : index
+        })
     }
 
     render(){
@@ -99,23 +89,24 @@ export default class MainPage extends React.Component{
 
                 <main>
                     {/* Hero unit */}
-                    <div className={classes.heroContent}>
-                        <Container maxWidth="sm">
-                            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                                Focus Album
-                            </Typography>
-                            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                                Something about the focus Album, should display different album when hover on it
-                            </Typography>
+                    {this.state.songs.length !== 0 ?
+                        <div className={'focus_song'} >
+                            <AntdCard title={this.state.songs[this.state.focus_index].NAME} bordered={false} style={{ width: 300 }}>
+                                <Rate disabled value={this.state.songs[this.state.focus_index].RATING} />
+                                <p>Release: {this.state.songs[this.state.focus_index].YEAR}</p>
+                                <p>Genre: {this.state.songs[this.state.focus_index].GENRE_NAME}</p>
+                                <p>Artist: {this.state.songs[this.state.focus_index].ARTIST_NAME}</p>
+                            </AntdCard>
+                        </div>
+                        : null}
 
-                        </Container>
-                    </div>
+
                     <Container className={classes.cardGrid} maxWidth="md">
                         {/* End hero unit */}
                         <Grid container spacing={4}>
-                            {this.state.songs.map(song => (
+                            {this.state.songs.map((song,index) => (
                                 <Grid item key={song.NAME} xs={12} sm={6} md={4}>
-                                    <Card className={classes.card} >
+                                    <Card className={classes.card} onMouseOver={()=>this.handleOnHover(index)}>
                                         <CardContent className={classes.cardContent}>
                                             <Typography gutterBottom variant="h5" component="h2">
                                                 {song.NAME}

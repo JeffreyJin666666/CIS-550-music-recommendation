@@ -14,9 +14,11 @@ export default class YearComponent extends React.Component{
 
     render() {
         return(
+            <div className={'year_component'}>
                 <Select defaultValue={this.props.value} onChange={(v)=>this.props.onChange(this.props.choose_key, v)} style={{ width: '100' }} >
                     {children}
                 </Select>
+            </div>
         )
     }
 }

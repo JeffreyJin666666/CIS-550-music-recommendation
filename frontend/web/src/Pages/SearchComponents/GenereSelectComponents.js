@@ -94,7 +94,7 @@ export default class GeneralSelectComponent extends React.Component{
     render() {
         return(
             <Select
-                mode="multiple"
+
                 style={{ width: '100%' }}
                 placeholder="Please select"
                 onChange={(v)=>this.props.onChange(this.props.choose_key, v)}
